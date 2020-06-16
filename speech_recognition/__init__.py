@@ -973,7 +973,9 @@ class Recognizer(AudioSource):
             raise RequestError("recognition connection failed: {0}".format(e.reason))
 
         if show_all: return response
-        if len(response.results) == 0: raise UnknownValueError()
+        if len(response.results) == 0:
+            transcript = ''
+            return transcript
 
         transcript = ''
         for result in response.results:
